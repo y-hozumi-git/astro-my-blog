@@ -1,0 +1,32 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import { getCollection } from 'astro:content';
+
+//microCMS呼び出し
+import { getBlogs, getBlogDetail } from '../../library/microcms';
+
+// getBlogs() 関数で一覧データを取得
+const data = await getBlogs({ limit: 20 });
+const blogs = data.contents;
+---
+<Layout>
+  <section class="mb-8">
+    <h2 class="text-3xl font-bold mb-4">最新の投稿</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {blogs.map((blog) => {
+        return (
+          <a href={`/blog/${blog.id}`}>
+            <img
+              src={blog.eyecatch.url}
+              height="300"
+              width="200"
+              alt=""
+              class="w-full"
+            />
+            <h2>{blog.title}</h2>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+</Layout>
