@@ -1,0 +1,16 @@
+/* styles/global.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gray-50 text-gray-800;
+}
+
+a {
+  @apply text-blue-500 hover:underline;
+}
+
+.prose img {
+  @apply rounded-lg;
+}
